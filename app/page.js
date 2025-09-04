@@ -1,11 +1,18 @@
-import TiltedCover from "../components/animata/image/tilted-cover";
-import CareerHeroSlide from "../components/HeaderCarousel";
+"use client";
 
+import React from "react";
+import { Globe } from "@/components/magicui/globe";
+import { AnimatedBeamDemo } from "@/components/magicui/beam";
+import HeaderCarousel3 from "@/components/HeaderCarousel3";
+import QuizComponent from "@/components/HeaderCarousel4";
+import TechStackCarousel from "@/components/HeaderCarousel2";
+import HeaderCarousel from "@/components/carousel";
 export default function HomePage() {
   return (
-    <div className="w-full flex items-center justify-center py-16">
-    
-      <CareerHeroSlide />
-    </div>
+    <>
+    {/* <HeaderCarousel3/> */}
+    <HeaderCarousel/>
+   
+    </>
   );
 }
