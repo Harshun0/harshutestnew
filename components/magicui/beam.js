@@ -26,7 +26,7 @@ export const AnimatedBeam = ({
 }) => {
   const [pathD, setPathD] = React.useState("");
   const [svgDimensions, setSvgDimensions] = React.useState({ width: 0, height: 0 });
-  const idRef = React.useId ? React.useId() : `gradient-${Math.random().toString(36).slice(2)}`;
+  const idRef = React.useId();
 
   const gradientCoordinates = reverse
     ? { x1: ["90%", "-10%"], x2: ["100%", "0%"], y1: ["0%", "0%"], y2: ["0%", "0%"] }
