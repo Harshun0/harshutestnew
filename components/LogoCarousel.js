@@ -120,6 +120,8 @@ const LogoColumn = React.memo(({ logos, index, currentTime }) => {
   )
 })
 
+LogoColumn.displayName = "LogoColumn"
+
 // Main LogoCarousel component
 function LogoCarousel({ columnCount = 2 }) {
   const [logoSets, setLogoSets] = useState([])

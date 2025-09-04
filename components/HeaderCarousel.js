@@ -73,7 +73,7 @@ const CareerHeroSlide = () => {
 
             {/* Description */}
             <p className="text-gray-600 text-base lg:text-lg leading-relaxed max-w-lg">
-              For more than 10 years, we've been passionate about providing engaging, 
+              For more than 10 years, we&apos;ve been passionate about providing engaging, 
               instructor-led training that helps professionals around the world grow and succeed.
             </p>
 
