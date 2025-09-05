@@ -4,25 +4,25 @@ import LogoCarousel from './LogoCarousel';
 import { BackgroundBeamsWithCollision } from './ui/background-beams-with-collision';
 // Memoized company logo component
 const CompanyLogos = memo(() => (
-  <div className="mt-8 flex justify-center">
-    <div className="bg-white rounded-lg shadow-md p-4 max-w-full overflow-hidden">
-      <div className="flex items-center justify-center space-x-6 md:space-x-8">
+  <div className="mt-6 sm:mt-8 flex justify-center">
+    <div className="bg-white rounded-lg shadow-md p-2 sm:p-3 md:p-4 max-w-full overflow-hidden">
+      <div className="flex items-center justify-center space-x-2 sm:space-x-4 md:space-x-6 lg:space-x-8">
         {/* Company Logo Placeholders */}
-        <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-blue-600 rounded-full"></div>
-          <span className="text-blue-600 font-bold text-sm">cognizant</span>
+        <div className="flex items-center space-x-1 sm:space-x-2">
+          <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-blue-600 rounded-full"></div>
+          <span className="text-blue-600 font-bold text-xs sm:text-sm hidden sm:inline">cognizant</span>
         </div>
-        <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-red-500 rounded-full"></div>
-          <span className="text-red-500 font-bold text-sm">TCS</span>
+        <div className="flex items-center space-x-1 sm:space-x-2">
+          <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-red-500 rounded-full"></div>
+          <span className="text-red-500 font-bold text-xs sm:text-sm hidden sm:inline">TCS</span>
         </div>
-        <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-blue-700 rounded-full"></div>
-          <span className="text-blue-700 font-bold text-sm">Infosys</span>
+        <div className="flex items-center space-x-1 sm:space-x-2">
+          <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-blue-700 rounded-full"></div>
+          <span className="text-blue-700 font-bold text-xs sm:text-sm hidden sm:inline">Infosys</span>
         </div>
-        <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-red-600 rounded-full"></div>
-          <span className="text-red-600 font-bold text-xs">ZenSar</span>
+        <div className="flex items-center space-x-1 sm:space-x-2">
+          <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-red-600 rounded-full"></div>
+          <span className="text-red-600 font-bold text-xs sm:text-sm hidden sm:inline">ZenSar</span>
         </div>
       </div>
     </div>
@@ -44,50 +44,50 @@ const CareerHeroSlide = () => {
   };
 
   return (
-    <BackgroundBeamsWithCollision className="h-screen relative overflow-hidden">
+    <BackgroundBeamsWithCollision className="min-h-fit md:min-h-screen relative overflow-hidden">
       
       {/* Main Container */}
-      <div className="container mx-auto px-6 lg:px-12 py-16">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center min-h-[80vh]">
+      <div className="container mx-auto px-4 sm:px-2 md:px-8 lg:px-12 py-4 sm:py-8 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4 md:gap-12 lg:gap-20 items-center md:min-h-[80vh]">
           
           {/* Left Content */}
-          <div className={`space-y-6 transition-all duration-1000 ease-out ${isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
+          <div className={`space-y-3 sm:space-y-4 md:space-y-6 transition-all duration-1000 ease-out ${isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'} order-1`}>
             
             {/* Main Heading */}
-            <h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold leading-tight text-gray-900">
-              <span className="whitespace-nowrap">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-bold leading-tight text-gray-900">
+              <span className="block sm:inline">
                 Unlock your{" "}
                 <span className="text-blue-500 relative inline-block">
                   Career
-                  <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full transform scale-x-0 animate-[scaleX_1s_ease-out_0.5s_forwards]"></span>
+                  <span className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-0.5 sm:h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full transform scale-x-0 animate-[scaleX_1s_ease-out_0.5s_forwards]"></span>
                 </span>
               </span>{" "}
-              potential
+              <span className="block sm:inline">potential</span>
             </h1>
 
             {/* Subheading */}
-            <div className="flex items-center space-x-2 flex-wrap">
-              <span className="text-blue-600 font-bold text-lg lg:text-xl">No.1 Training &</span>
-              <span className="text-gray-900 font-normal text-lg lg:text-xl">Placement Center</span>
+            <div className="flex items-center space-x-1 sm:space-x-2 flex-wrap">
+              <span className="text-blue-600 font-bold text-sm sm:text-base md:text-lg lg:text-xl">No.1 Training &</span>
+              <span className="text-gray-900 font-normal text-sm sm:text-base md:text-lg lg:text-xl">Placement Center</span>
             </div>
 
             {/* Description */}
-            <p className="text-gray-600 text-base lg:text-lg leading-relaxed max-w-lg">
+            <p className="text-gray-600 text-sm sm:text-base lg:text-lg leading-relaxed max-w-full sm:max-w-lg">
               For more than 10 years, we&apos;ve been passionate about providing engaging, 
               instructor-led training that helps professionals around the world grow and succeed.
             </p>
 
             {/* Trust Badge */}
-            <p className="text-gray-600 text-sm">
+            <p className="text-gray-600 text-xs sm:text-sm">
               Est. 2013 Trusted by{' '}
               <span className="font-bold text-blue-600">5000+</span> Students
             </p>
 
             {/* CTA Button */}
-            <div className="pt-4">
+            <div className="pt-1 sm:pt-2 md:pt-4">
   <button 
     onClick={handleButtonClick}
-    className="group relative bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:scale-110 hover:shadow-2xl hover:-translate-y-1 overflow-hidden"
+    className="group relative bg-blue-600 text-white px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-lg font-semibold text-sm sm:text-base md:text-lg transition-all duration-300 hover:scale-105 sm:hover:scale-110 hover:shadow-2xl hover:-translate-y-1 overflow-hidden w-full sm:w-auto"
   >
     {/* Animated background layers */}
     <div className="absolute inset-0 bg-gradient-to-r from-blue-400 via-blue-600 to-blue-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -118,13 +118,13 @@ const CareerHeroSlide = () => {
           </div>
 
           {/* Right Side - 3D Logo */}
-          <div className={`flex justify-center lg:justify-end transition-all duration-1000 ease-out delay-300 ${isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
+          <div className={`hidden md:flex justify-center md:justify-end transition-all duration-1000 ease-out delay-300 ${isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'} order-2 mb-6 md:mb-0`}>
             <div className="relative group cursor-pointer">
               
               {/* Floating Animation Wrapper */}
               <div className="animate-float">
                 {/* Main Logo Container */}
-                <div className="relative w-80 h-80 lg:w-96 lg:h-96 transform transition-all duration-500 group-hover:scale-105">
+                <div className="relative w-48 h-48 sm:w-60 sm:h-60 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 transform transition-all duration-500 group-hover:scale-105">
                   
                   {/* 3D Logo Placeholder */}
                   <div className="relative w-full h-full">
@@ -169,6 +169,12 @@ const CareerHeroSlide = () => {
         @media (max-width: 768px) {
           .animate-float {
             animation: float 3s ease-in-out infinite;
+          }
+        }
+        
+        @media (max-width: 640px) {
+          .animate-float {
+            animation: float 2.5s ease-in-out infinite;
           }
         }
       `}</style>

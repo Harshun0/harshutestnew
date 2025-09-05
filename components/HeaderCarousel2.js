@@ -137,15 +137,15 @@ const TechStackCarousel = ({ isParentActive = true, parentCarouselIndex = 1, onP
     }
   ], []);
 
-  // Optimized animation with reduced frequency - only for desktop and when parent is active
+  // Smooth animation with higher frequency for better performance
   useEffect(() => {
     let lastTime = 0;
     const animate = (currentTime) => {
-      if (currentTime - lastTime >= 50) { // Reduced from ~16ms to 50ms
+      if (currentTime - lastTime >= 16) { // 60fps for smooth animation
         if (!isDragging && isParentActive) {
           setRotation(prev => ({
-            x: prev.x + 0.3, // Reduced rotation speed
-            y: prev.y + 0.8
+            x: prev.x + 0.5, // Increased rotation speed
+            y: prev.y + 1.2
           }));
         }
         lastTime = currentTime;
@@ -296,28 +296,28 @@ const TechStackCarousel = ({ isParentActive = true, parentCarouselIndex = 1, onP
   ], []);
 
   return (
-    <BackgroundBeamsWithCollision className="relative overflow-hidden bg-cover bg-center bg-no-repeat">
+    <BackgroundBeamsWithCollision className="min-h-fit md:min-h-screen relative overflow-hidden bg-cover bg-center bg-no-repeat">
     <div 
       ref={containerRef}
       
       
     >
       <div 
-        className="container mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-12 relative z-10"
+        className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-8 pt-4 sm:pt-6 md:pt-8 pb-8 sm:pb-10 md:pb-12 relative z-10"
         style={{ pointerEvents: 'none' }} // Disable pointer events on container
       >
         
         {/* Desktop Layout */}
-        <div className="hidden lg:block">
-          <div className="flex items-center justify-between gap-8 xl:gap-12">
+        <div className="hidden md:block">
+          <div className="flex items-center justify-between gap-4 md:gap-6 lg:gap-8 xl:gap-12">
             {/* Desktop: Carousel on Left */}
-            <div className="w-1/2 max-w-lg">
+            <div className="w-1/2 max-w-xs md:max-w-sm lg:max-w-lg">
               <div className="relative">
                 <div 
-                  className="bg-[#0a174e] rounded-3xl p-6 xl:p-8 text-white shadow-2xl transform transition-all duration-500 hover:scale-105 will-change-transform"
+                  className="bg-[#0a174e] rounded-2xl md:rounded-3xl p-4 md:p-6 xl:p-8 text-white shadow-2xl transform transition-all duration-500 hover:scale-105 will-change-transform"
                   style={{ pointerEvents: 'auto' }} // Re-enable for carousel content
                 >
-                  <div className="flex items-center justify-center mb-4 xl:mb-6">
+                  <div className="flex items-center justify-center mb-3 md:mb-4 xl:mb-6">
                     {slides[currentSlide].icon}
                   </div>
                  
@@ -325,16 +325,16 @@ const TechStackCarousel = ({ isParentActive = true, parentCarouselIndex = 1, onP
                     <p className="text-blue-200 text-sm font-medium mb-2 tracking-wider">
                       {slides[currentSlide].subtitle}
                     </p>
-                    <h2 className="text-3xl xl:text-4xl font-bold mb-4 xl:mb-6 leading-tight">
+                    <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-3 md:mb-4 xl:mb-6 leading-tight">
                       {slides[currentSlide].title}
                     </h2>
-                    <p className="text-blue-100 text-base xl:text-lg mb-6 xl:mb-8 leading-relaxed">
+                    <p className="text-blue-100 text-sm md:text-base xl:text-lg mb-4 md:mb-6 xl:mb-8 leading-relaxed">
                       {slides[currentSlide].description}
                     </p>
                    
                     <Link 
   href={slides[currentSlide].href}
-  className="inline-block cursor-pointer bg-white text-blue-600 font-semibold px-6 xl:px-8 py-2.5 xl:py-3 rounded-xl hover:bg-blue-50 hover:text-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg text-sm xl:text-base will-change-transform"
+  className="inline-block cursor-pointer bg-white text-blue-600 font-semibold px-4 md:px-6 xl:px-8 py-2 md:py-2.5 xl:py-3 rounded-lg md:rounded-xl hover:bg-blue-50 hover:text-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg text-xs md:text-sm xl:text-base will-change-transform"
 >
   {slides[currentSlide].buttonText}
 </Link>
@@ -343,7 +343,7 @@ const TechStackCarousel = ({ isParentActive = true, parentCarouselIndex = 1, onP
 
                 {/* Carousel Navigation - Allow parent carousel to work */}
                 <div 
-                  className="flex items-center justify-center mt-6 space-x-4"
+                  className="flex items-center justify-center mt-4 md:mt-6 space-x-3 md:space-x-4"
                   style={{ pointerEvents: 'auto' }} // Re-enable for navigation
                 >
                   <button
@@ -351,7 +351,7 @@ const TechStackCarousel = ({ isParentActive = true, parentCarouselIndex = 1, onP
                     className="p-2 rounded-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 will-change-transform"
                     aria-label="Previous slide"
                   >
-                    <ChevronLeft className="w-6 h-6 text-blue-600" />
+                    <ChevronLeft className="w-4 h-4 md:w-6 md:h-6 text-blue-600" />
                   </button>
                   <div className="flex space-x-2">
                     {slides.map((_, index) => (
@@ -370,7 +370,7 @@ const TechStackCarousel = ({ isParentActive = true, parentCarouselIndex = 1, onP
                     className="p-2 rounded-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 border-2 border-black will-change-transform"
                     aria-label="Next slide"
                   >
-                    <ChevronRight className="w-6 h-6 text-blue-600" />
+                    <ChevronRight className="w-4 h-4 md:w-6 md:h-6 text-blue-600" />
                   </button>
                 </div>
               </div>
@@ -385,13 +385,14 @@ const TechStackCarousel = ({ isParentActive = true, parentCarouselIndex = 1, onP
                 <div
                   ref={cubeRef}
                   data-cube-container="true"
-                  className="relative cursor-grab active:cursor-grabbing select-none"
+                  className="relative cursor-grab active:cursor-grabbing select-none md:w-[180px] md:h-[180px] lg:w-[220px] lg:h-[220px]"
                   style={{
-                    width: '220px',
-                    height: '220px',
-                    perspective: '700px',
+                    width: '160px',
+                    height: '160px',
+                    perspective: '500px',
                     transformStyle: 'preserve-3d'
                   }}
+  
                 >
                   <div
                     className="relative w-full h-full transition-transform duration-300 ease-out will-change-transform"
@@ -410,16 +411,16 @@ const TechStackCarousel = ({ isParentActive = true, parentCarouselIndex = 1, onP
                         onTouchStart={handleTouchStart}
                         onTouchMove={handleTouchMove}
                         onTouchEnd={handleTouchEnd}
-                        className="absolute w-full h-full bg-white/40 rounded-2xl shadow-2xl flex flex-col items-center justify-center p-4 xl:p-6 transition-all duration-300 hover:shadow-3xl backdrop-blur-lg cursor-pointer will-change-transform"
+                        className="absolute w-full h-full bg-white/40 rounded-xl md:rounded-2xl shadow-2xl flex flex-col items-center justify-center p-2 md:p-4 xl:p-6 transition-all duration-300 hover:shadow-3xl backdrop-blur-lg cursor-pointer will-change-transform"
                         style={{ 
                           transform: cubeTransforms[index]
                         }}
                       >
-                        <div className="text-3xl xl:text-4xl mb-2 xl:mb-3">{stack.icon}</div>
-                        <h3 className="text-lg xl:text-2xl font-bold text-gray-800 mb-1 xl:mb-2 text-center leading-tight">{stack.name}</h3>
-                        <p className="text-gray-600 text-center text-sm xl:text-base mb-2 xl:mb-3 leading-tight px-1">{stack.description}</p>
-                        <div className="px-3 xl:px-4 py-1.5 xl:py-2 bg-green-100 rounded-full">
-                          <span className="text-green-800 font-semibold text-sm xl:text-base">Popular</span>
+                        <div className="text-xl md:text-2xl lg:text-3xl xl:text-4xl mb-1 md:mb-2 xl:mb-3">{stack.icon}</div>
+                        <h3 className="text-xs md:text-sm lg:text-lg xl:text-2xl font-bold text-gray-800 mb-1 xl:mb-2 text-center leading-tight">{stack.name}</h3>
+                        <p className="text-gray-600 text-center text-xs md:text-sm xl:text-base mb-1 md:mb-2 xl:mb-3 leading-tight px-1">{stack.description}</p>
+                        <div className="px-2 md:px-3 xl:px-4 py-1 md:py-1.5 xl:py-2 bg-green-100 rounded-full">
+                          <span className="text-green-800 font-semibold text-xs md:text-sm xl:text-base">Popular</span>
                         </div>
                       </div>
                     ))}
@@ -430,18 +431,18 @@ const TechStackCarousel = ({ isParentActive = true, parentCarouselIndex = 1, onP
           </div>
 
           {/* Feature Cards - Desktop - Strip Style */}
-          <div className="mt-12 lg:mt-16">
+          <div className="mt-8 md:mt-10 lg:mt-12 xl:mt-16">
             <div 
-              className="flex flex-wrap justify-center gap-3 xl:gap-4 max-w-6xl mx-auto"
+              className="flex flex-wrap justify-center gap-2 md:gap-3 xl:gap-4 max-w-6xl mx-auto"
               style={{ pointerEvents: 'auto' }} // Re-enable for feature cards
             >
               {features.map((feature, index) => (
                 <div
                   key={index}
-                  className="bg-[#1884b6] rounded-full px-6 py-3 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 will-change-transform flex items-center gap-3 min-w-fit"
+                  className="bg-[#1884b6] rounded-full px-3 md:px-4 lg:px-6 py-2 md:py-2.5 lg:py-3 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 will-change-transform flex items-center gap-2 md:gap-3 min-w-fit"
                 >
-                  <span className="text-xl">{feature.emoji}</span>
-                  <span className="font-semibold text-white text-base xl:text-lg whitespace-nowrap">
+                  <span className="text-base md:text-lg lg:text-xl">{feature.emoji}</span>
+                  <span className="font-semibold text-white text-xs md:text-sm lg:text-base xl:text-lg whitespace-nowrap">
                     {feature.title}
                   </span>
                 </div>
@@ -452,25 +453,25 @@ const TechStackCarousel = ({ isParentActive = true, parentCarouselIndex = 1, onP
 
         {/* Mobile Layout - Cube Hidden */}
         <div 
-          className="flex flex-col lg:hidden gap-4 sm:gap-6 mt-6"
+          className="flex flex-col md:hidden gap-3 sm:gap-4 mt-4 sm:mt-6"
           style={{ pointerEvents: 'auto' }} // Re-enable for mobile layout
         >
-          {/* Mobile: Carousel Card */}
-          <div className="w-full px-2">
-            <div className="relative max-w-sm mx-auto">
+          {/* Mobile: Carousel Card - Match HeaderCarousel1 Size */}
+          <div className="w-full px-4 sm:px-6">
+            <div className="relative max-w-full sm:max-w-lg mx-auto">
               <div className="bg-[#0a174e] rounded-2xl p-4 sm:p-6 text-white shadow-2xl transform transition-all duration-500 hover:scale-105 will-change-transform">
                 <div className="flex items-center justify-center mb-3 sm:mb-4">
                   {slides[currentSlide].icon}
                 </div>
                
                 <div className="text-center">
-                  <p className="text-blue-200 text-xs sm:text-sm font-medium mb-1 sm:mb-2 tracking-wider">
+                  <p className="text-blue-200 text-sm sm:text-base font-medium mb-2 tracking-wider">
                     {slides[currentSlide].subtitle}
                   </p>
-                  <h2 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 leading-tight">
+                  <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 leading-tight">
                     {slides[currentSlide].title}
                   </h2>
-                  <p className="text-blue-100 text-sm leading-relaxed mb-3 sm:mb-4">
+                  <p className="text-blue-100 text-sm sm:text-base leading-relaxed mb-4 sm:mb-6">
                     {slides[currentSlide].description}
                   </p>
                  
@@ -478,7 +479,7 @@ const TechStackCarousel = ({ isParentActive = true, parentCarouselIndex = 1, onP
                     href={slides[currentSlide].href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block bg-white text-blue-600 font-semibold px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg sm:rounded-xl hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg text-sm will-change-transform"
+                    className="inline-block bg-white text-blue-600 font-semibold px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-lg font-semibold text-sm sm:text-base md:text-lg transition-all duration-300 hover:scale-105 sm:hover:scale-110 hover:shadow-2xl hover:-translate-y-1 overflow-hidden w-full sm:w-auto will-change-transform"
                     onClick={(e) => e.stopPropagation()}
                   >
                     {slides[currentSlide].buttonText}
@@ -486,8 +487,8 @@ const TechStackCarousel = ({ isParentActive = true, parentCarouselIndex = 1, onP
                 </div>
               </div>
 
-              {/* Carousel Navigation - CRITICAL: Stop propagation on mobile too */}
-              <div className="flex items-center justify-center mt-3 sm:mt-4 space-x-3">
+              {/* Carousel Navigation - Match HeaderCarousel1 Size */}
+              <div className="flex items-center justify-center mt-4 sm:mt-6 space-x-4">
                 <button
                   onClick={prevSlide}
                   onTouchStart={(e) => e.stopPropagation()}
@@ -495,16 +496,16 @@ const TechStackCarousel = ({ isParentActive = true, parentCarouselIndex = 1, onP
                   className="p-1.5 rounded-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 will-change-transform"
                   aria-label="Previous slide"
                 >
-                  <ChevronLeft className="w-4 h-4 text-blue-600" />
+                  <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
                 </button>
-                <div className="flex space-x-1.5">
+                <div className="flex space-x-2">
                   {slides.map((_, index) => (
                     <button
                       key={index}
                       onClick={(e) => handleSlideClick(index, e)}
                       onTouchStart={(e) => e.stopPropagation()}
                       onTouchEnd={(e) => e.stopPropagation()}
-                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
                         index === currentSlide ? 'bg-blue-600' : 'bg-blue-300'
                       }`}
                       aria-label={`Go to slide ${index + 1}`}
@@ -518,27 +519,24 @@ const TechStackCarousel = ({ isParentActive = true, parentCarouselIndex = 1, onP
                   className="p-1.5 rounded-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 border-2 border-black will-change-transform"
                   aria-label="Next slide"
                 >
-                  <ChevronRight className="w-4 h-4 text-blue-600" />
+                  <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
                 </button>
               </div>
             </div>
           </div>
 
-          {/* Mobile: Feature Cards - Original grid layout preserved */}
-          <div className="w-full px-2 mt-8">
+          {/* Mobile: Feature Cards - Only 2 Cards Side by Side */}
+          <div className="w-full px-4 sm:px-6 mt-2">
             <div className="grid grid-cols-2 gap-2 sm:gap-3 max-w-sm mx-auto">
-              {features.slice(0, 4).map((feature, index) => (
+              {features.slice(0, 2).map((feature, index) => (
                 <div
                   key={index}
-                  className="bg-[#1884b6] rounded-lg p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 will-change-transform"
+                  className="bg-[#1884b6] rounded-lg p-1.5 sm:p-2 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 will-change-transform"
                 >
-                  <div className="flex flex-col items-center mb-1">
-                    <div className="mb-1">
-                      <Rocket className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                    </div>
+                  <div className="flex flex-col items-center">
+                    <span className="text-base sm:text-lg mb-0.5">{feature.emoji}</span>
                     <h4 className="font-semibold text-white text-xs sm:text-sm text-center leading-tight">{feature.title}</h4>
                   </div>
-                  <p className="text-xs text-white leading-relaxed text-center">{feature.description}</p>
                 </div>
               ))}
             </div>

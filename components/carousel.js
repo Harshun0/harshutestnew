@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from 'react';
 import CareerHeroSlide from './HeaderCarousel1';
 import HeaderCarousel3 from "@/components/HeaderCarousel3";
 import QuizComponent from "@/components/HeaderCarousel4";
@@ -24,50 +23,48 @@ const Component3 = () => (
   </div>
 );
 
-const Component4 = () => (
+const Component4 = ({ onReady }) => (
   <div >
-    <QuizComponent/>
+    <QuizComponent onReady={onReady} />
   </div>
 );
 
 const HeaderCarousel = () => {
   const components = [Component1, Component2, Component3, Component4];
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [quizReady, setQuizReady] = useState(false);
 
   // Define custom timing for each slide (in milliseconds)
   const getSlideTiming = (slideIndex) => {
-    // 4th slide (index 3) gets 8 seconds, others get 5 seconds
-    return slideIndex === 3 ? 8000 : 5000;
+    // 4th slide (index 3) gets 15 seconds, others get 5 seconds
+    return slideIndex === 3 ? 15000 : 5000;
   };
 
   // Auto-rotate functionality with custom timing
   useEffect(() => {
-    if (!isAutoPlaying) return;
-
     const currentTiming = getSlideTiming(currentSlide);
-    
+
+    // Gate auto-rotation for quiz slide until it signals ready
+    if (currentSlide === 3 && !quizReady) {
+      return; // Do not start interval yet
+    }
+
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % components.length);
     }, currentTiming);
 
     return () => clearInterval(interval);
-  }, [isAutoPlaying, components.length, currentSlide]);
+  }, [components.length, currentSlide, quizReady]);
+
+  // Reset quiz readiness each time we enter the quiz slide
+  useEffect(() => {
+    if (currentSlide === 3) {
+      setQuizReady(false);
+    }
+  }, [currentSlide]);
 
   const goToSlide = (index) => {
     setCurrentSlide(index);
-  };
-
-  const goToPrevious = () => {
-    setCurrentSlide((prev) => (prev - 1 + components.length) % components.length);
-  };
-
-  const goToNext = () => {
-    setCurrentSlide((prev) => (prev + 1) % components.length);
-  };
-
-  const toggleAutoPlay = () => {
-    setIsAutoPlaying(!isAutoPlaying);
   };
 
   const CurrentComponent = components[currentSlide];
@@ -78,31 +75,12 @@ const HeaderCarousel = () => {
       <div className="relative">
         {/* Slide content */}
         <div >
-          <CurrentComponent />
+          {currentSlide === 3 ? (
+            <CurrentComponent onReady={() => setQuizReady(true)} />
+          ) : (
+            <CurrentComponent />
+          )}
         </div>
-
-        {/* Navigation arrows */}
-        <button
-          onClick={goToPrevious}
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-all duration-200"
-        >
-          <ChevronLeft size={24} />
-        </button>
-        
-        <button
-          onClick={goToNext}
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-all duration-200"
-        >
-          <ChevronRight size={24} />
-        </button>
-
-        {/* Auto-play toggle */}
-        <button
-          onClick={toggleAutoPlay}
-          className="absolute top-4 right-4 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-all duration-200"
-        >
-          {isAutoPlaying ? <Pause size={20} /> : <Play size={20} />}
-        </button>
       </div>
 
       {/* Dots indicator */}
@@ -121,9 +99,7 @@ const HeaderCarousel = () => {
       </div>
 
       {/* Slide counter */}
-      <div className="text-center text-sm text-gray-500 pb-2">
-        {currentSlide + 1} of {components.length}
-      </div>
+      
     </div>
   );
 };

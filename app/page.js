@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { AnimatedBeam } from "@/components/magicui/beam";
 import { Globe } from "@/components/magicui/globe";
 import { AnimatedBeamDemo } from "@/components/magicui/beam";
 import HeaderCarousel3 from "@/components/HeaderCarousel3";
@@ -12,6 +13,7 @@ export default function HomePage() {
     <>
     {/* <HeaderCarousel3/> */}
     <HeaderCarousel/>
+    
    
     </>
   );
