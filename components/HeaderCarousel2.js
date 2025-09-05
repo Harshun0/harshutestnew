@@ -296,11 +296,10 @@ const TechStackCarousel = ({ isParentActive = true, parentCarouselIndex = 1, onP
   ], []);
 
   return (
-    <BackgroundBeamsWithCollision className="min-h-fit md:min-h-screen relative overflow-hidden bg-cover bg-center bg-no-repeat">
+    <BackgroundBeamsWithCollision className="min-h-[520px] md:min-h-screen relative overflow-hidden bg-cover bg-center bg-no-repeat">
     <div 
       ref={containerRef}
-      
-      
+      className="min-h-[520px] md:min-h-[80vh] flex flex-col justify-center"
     >
       <div 
         className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-8 pt-4 sm:pt-6 md:pt-8 pb-8 sm:pb-10 md:pb-12 relative z-10"
@@ -377,6 +376,7 @@ const TechStackCarousel = ({ isParentActive = true, parentCarouselIndex = 1, onP
             </div>
 
             {/* Desktop: 3D Cube on Right - Complete event isolation */}
+            {/* Only render cube on desktop and tablet, never on mobile */}
             <div className="w-1/2 flex justify-center">
               <div 
                 className="relative flex justify-center"
@@ -390,9 +390,9 @@ const TechStackCarousel = ({ isParentActive = true, parentCarouselIndex = 1, onP
                     width: '160px',
                     height: '160px',
                     perspective: '500px',
-                    transformStyle: 'preserve-3d'
+                    transformStyle: 'preserve-3d',
+                    display: typeof window !== 'undefined' && window.innerWidth < 768 ? 'none' : undefined
                   }}
-  
                 >
                   <div
                     className="relative w-full h-full transition-transform duration-300 ease-out will-change-transform"

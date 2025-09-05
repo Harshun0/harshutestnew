@@ -157,8 +157,8 @@ const QuizCompo = ({ onReady }) => {
   const progressPercentage = ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
 
   return (
-    <BackgroundBeamsWithCollision className="min-h-fit md:min-h-screen relative overflow-hidden">
-    <div className="container mx-auto px-4 sm:px-2 md:px-8 lg:px-12 py-4 sm:py-8 md:py-16 min-h-fit md:min-h-[80vh] flex flex-col">
+    <BackgroundBeamsWithCollision className="min-h-[520px] md:min-h-screen relative overflow-hidden">
+    <div className="container mx-auto px-4 sm:px-2 md:px-8 lg:px-12 py-4 sm:py-8 md:py-16 min-h-[520px] md:min-h-[80vh] flex flex-col justify-center">
       {/* Progress Bar */}
       <div className="h-1 bg-gray-200 relative overflow-hidden flex-shrink-0">
         <div 
@@ -172,7 +172,7 @@ const QuizCompo = ({ onReady }) => {
       {/* Mobile Layout */}
       <div className="block lg:hidden space-y-3 sm:space-y-4 md:space-y-6">
         {/* Header */}
-        <div className="text-center bg-gradient-to-r from-blue-50 to-purple-50 p-3 rounded-lg">
+        <div className="text-center bg-gradient-to-r from-blue-50 to-purple-50 p-3 rounded-lg mt-6">
           <div className="flex items-center justify-center gap-2 mb-1">
             <Brain className="w-5 h-5 text-blue-500 animate-pulse" />
             <h1 className="text-lg font-bold bg-gradient-to-r from-blue-600 via-blue-400 to-blue-200 bg-clip-text text-transparent">
@@ -426,7 +426,7 @@ const QuizCompo = ({ onReady }) => {
       </div>
 
       {/* Mobile Bottom Section - Quiz Button and Indicators */}
-      <div className="block lg:hidden bg-gradient-to-r from-blue-50/50 to-purple-50/50 p-4 rounded-lg mt-4">
+      <div className="block lg:hidden bg-gradient-to-r from-blue-50/50 to-purple-50/50 p-4 rounded-lg mt-4 sticky bottom-0 z-40 shadow-xl">
         {/* Eye-catching Quiz Button */}
         <div className="flex justify-center mb-4">
           <button

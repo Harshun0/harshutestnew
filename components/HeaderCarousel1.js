@@ -44,10 +44,10 @@ const CareerHeroSlide = () => {
   };
 
   return (
-    <BackgroundBeamsWithCollision className="min-h-fit md:min-h-screen relative overflow-hidden">
+    <BackgroundBeamsWithCollision className="min-h-[520px] md:min-h-screen relative overflow-hidden">
       
       {/* Main Container */}
-      <div className="container mx-auto px-4 sm:px-2 md:px-8 lg:px-12 py-4 sm:py-8 md:py-16">
+      <div className="container mx-auto px-4 sm:px-2 md:px-8 lg:px-12 py-4 sm:py-8 md:py-16 min-h-[520px] md:min-h-[80vh] flex flex-col justify-center">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4 md:gap-12 lg:gap-20 items-center md:min-h-[80vh]">
           
           {/* Left Content */}

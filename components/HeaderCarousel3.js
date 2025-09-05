@@ -424,14 +424,14 @@ const CareerMentorsComponent = () => {
   }, [animationState, companies, getLogoPosition]);
 
   return (
-    <BackgroundBeamsWithCollision className="min-h-fit md:min-h-screen relative overflow-hidden">
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 py-4 sm:py-8 md:py-16 min-h-fit md:min-h-[80vh] flex flex-col justify-center">
+    <BackgroundBeamsWithCollision className="min-h-[520px] md:min-h-screen relative overflow-hidden">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 py-4 sm:py-8 md:py-16 min-h-[520px] md:min-h-[80vh] flex flex-col justify-center">
         
         {/* Mobile Layout */}
         {isMobile && (
-          <div className="space-y-3 sm:space-y-4 md:space-y-6">
+          <div className="space-y-3 sm:space-y-4 md:space-y-6 pb-8">
             {/* Main Heading - Mobile */}
-            <div className="text-center px-2">
+            <div className="text-center px-2 mt-2">
               <div className="relative inline-block">
                 <h1 className="text-2xl sm:text-3xl font-black leading-tight text-gray-800">
                   <span className="text-gray-800">Secure your </span>
@@ -451,7 +451,7 @@ const CareerMentorsComponent = () => {
             </div>
 
             {/* AnimatedBeamDemo Section - Mobile */}
-            <div className="flex justify-center py-2">
+            <div className="flex justify-center py-0">
               <div className="w-full max-w-lg">
                 <AnimatedBeamDemo />
               </div>
