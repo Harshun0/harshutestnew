@@ -8,12 +8,15 @@ import HeaderCarousel3 from "@/components/HeaderCarousel3";
 import QuizComponent from "@/components/HeaderCarousel4";
 import TechStackCarousel from "@/components/HeaderCarousel2";
 import HeaderCarousel from "@/components/carousel";
+import DomeGallery from "@/components/DomeGallery";
+import Lanyard from "@/components/card";
 export default function HomePage() {
   return (
     <>
     {/* <HeaderCarousel3/> */}
-    <HeaderCarousel/>
+   <HeaderCarousel/> 
     
+    {/* <Lanyard /> */}
    
     </>
   );

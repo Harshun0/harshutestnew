@@ -10,16 +10,24 @@
   },
   "dependencies": {
     "@lottiefiles/dotlottie-react": "^0.15.2",
+    "@react-three/drei": "^10.7.4",
+    "@react-three/fiber": "^9.3.0",
+    "@react-three/rapier": "^2.1.0",
     "@tabler/icons-react": "^3.34.1",
+    "@use-gesture/react": "^10.3.1",
+    "axios": "^1.11.0",
+    "cities.json": "^1.1.50",
     "clsx": "^2.1.1",
     "cobe": "^0.6.4",
     "framer-motion": "^12.23.12",
     "lucide-react": "^0.525.0",
+    "meshline": "^3.3.1",
     "motion": "^12.23.12",
     "next": "15.3.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "tailwind-merge": "^3.3.1"
+    "tailwind-merge": "^3.3.1",
+    "three": "^0.180.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

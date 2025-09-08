@@ -431,7 +431,7 @@ const CareerMentorsComponent = () => {
         {isMobile && (
           <div className="space-y-3 sm:space-y-4 md:space-y-6 pb-8">
             {/* Main Heading - Mobile */}
-            <div className="text-center px-2 mt-2">
+            <div className="text-center px-2 mt-4">
               <div className="relative inline-block">
                 <h1 className="text-2xl sm:text-3xl font-black leading-tight text-gray-800">
                   <span className="text-gray-800">Secure your </span>

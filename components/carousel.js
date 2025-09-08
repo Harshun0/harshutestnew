@@ -11,26 +11,21 @@ const Component1 = () => (
   </div>
 );
 
-const Component2 = () => (
-  <div >
-    <TechStackCarousel/>
-  </div>
-);
 
-const Component3 = () => (
+const Component2 = () => (
   <div >
     <HeaderCarousel3/>
   </div>
 );
 
-const Component4 = ({ onReady }) => (
+const Component3 = ({ onReady }) => (
   <div >
     <QuizComponent onReady={onReady} />
   </div>
 );
 
 const HeaderCarousel = () => {
-  const components = [Component1, Component2, Component3, Component4];
+  const components = [Component1, Component2, Component3];
   const [currentSlide, setCurrentSlide] = useState(0);
   const [quizReady, setQuizReady] = useState(false);
 
